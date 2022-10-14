@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Listen YT</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/html5media/1.1.5/html5media.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/plyr/3.6.8/plyr.min.js'></script>
+    <link rel='stylesheet' href='https://cdn.plyr.io/3.6.2/plyr.css'>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script type="text/javascript" src="/static/js/script.js"></script>
+    <script type="text/javascript" src="/static/js/prefixfree.min.js"></script>
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="container">
+        <div class="column add-bottom">
+            <div id="mainwrap">
+                <div id="nowPlay">
+                    <span id="npAction">Paused...</span><span id="npTitle"></span>
+                </div>
+                <div id="audiowrap">
+                    <div id="audio0">
+                        <audio id="audio1" preload controls>Your browser does not support HTML5 Audio! 😢</audio>
+                    </div>
+                    <div id="tracks">
+                        <a id="btnPrev"><i class="fa-solid fa-backward fa-sm"></i></a><a id="btnNext"><i class="fa-solid fa-forward fa-sm"></i></a>
+                    </div>
+                </div>
+                <div id="plwrap">
+                    <ul id="plList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    document.querySelector("body").onselectstart = function (){return false;};
+    var doc = new DOMParser().parseFromString('{{_userdata}}', "text/html");
+    setdata(doc.documentElement.textContent);
+    </script>
+</body>
+
+</html>

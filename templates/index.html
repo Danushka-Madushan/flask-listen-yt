@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YT - Music</title>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/fp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Add My Github Link -->
+    <div class="newsletter-subscribe">
+        <div class="container">
+            <div class="intro">
+                <div class="history"></div>
+                <h2 class="text-center"><i class="fa-brands fa-youtube"></i>&nbsp;LISTEN TO YOUR YOUTUBE PLAYLIST</h2>
+            </div>
+            <div class="bbbootstrap">
+                <div class="container">
+                    <form>
+                        <input class="InputBox" type="text" id="inpt" placeholder="YouTube Playlist" autocomplete="off">
+                        <input type="submit" id="Form_Go" class="Button" value="IMPORT">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="listWrapper">
+            <div id="itemsWrapper">
+                <div class="item">
+                    <!-- New items are created here -->
+                </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                    <filter id="gooey">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                        <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="highContrastGraphic" />
+                        <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
+                    </filter>
+                </defs>
+            </svg>
+            <div class="postbutton"></div>
+        </div>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js'></script>
+        <script src="/static/js/fp.js"></script>
+        <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+</body>
+
+</html>

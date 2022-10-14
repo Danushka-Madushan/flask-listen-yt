@@ -1,0 +1,190 @@
+.newsletter-subscribe {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background: #000 url('./body-bg.jpg') repeat 0 0;
+    padding: 40px 0;
+    border-radius: 10px;
+}
+
+.newsletter-subscribe p {
+    color: #fff;
+    line-height: 1.5;
+}
+
+p[class="songname"] {
+    color: #eff1f4;
+}
+
+.newsletter-subscribe h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 35px;
+    line-height: 1.5;
+    padding-top: 0;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.newsletter-subscribe .intro {
+    font-size: 16px;
+    margin: 0 auto 25px;
+}
+
+.newsletter-subscribe form {
+    justify-content: center;
+}
+
+.newsletter-subscribe {
+    width: 800px;
+}
+
+@media only screen and (max-width:800px) {
+    .newsletter-subscribe {
+        display: block;
+        width: 100%;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.bbbootstrap {
+    background-size: cover;
+}
+
+.bbbootstrap form {
+    position: relative;
+    width: auto;
+    margin: 22px auto 0;
+}
+
+.bbbootstrap form input[type="text"] {
+    padding: 15px 20px;
+    padding-right: 100px;
+    border-color: transparent;
+    border-radius: 4px;
+}
+
+input.InputBox {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    color: #333;
+    font-size: 15px;
+    padding: 3px;
+    margin: 0;
+    width: 250px;
+    background: #fff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+input[type=text] {
+    box-sizing: border-box;
+}
+
+.InputBox {
+    display: block;
+    width: 100% !important;
+    padding: 6px 12px;
+    font-size: 15px;
+    line-height: 22px;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.bbbootstrap form input[type="submit"] {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    float: right;
+    padding: 10px 25px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
+}
+
+.Button {
+    background-color: #055ADA;
+    background-image: none;
+}
+
+input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
+.Button {
+    letter-spacing: 1px;
+    text-align: center;
+    display: inline-block;
+    padding: 6px 12px;
+    vertical-align: middle;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 22px;
+    text-transform: uppercase;
+    border: transparent solid 1px;
+    border-radius: 3px;
+    color: #fff;
+    background-repeat: repeat-x;
+    background-color: #055ADA;
+}
+
+.Button {
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    will-change: transform;
+}
+
+.Button:hover {
+    background: #0445a8;
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.2);
+    transform: translate3d(0, -1px, 0);
+}
+
+.Button:active {
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    transform: translate3d(0, 1px, 0);
+}
+
+.hbuton {
+    letter-spacing: 1px;
+    text-align: center;
+    display: inline-block;
+    padding: 8px 12px;
+    vertical-align: middle;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 22px;
+    text-transform: uppercase;
+    border: transparent solid 1px;
+    border-radius: 3px;
+    color: #fff;
+    background-repeat: repeat-x;
+    background-color: #009b77;
+}
+
+.hbuton {
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    will-change: transform;
+}
+
+.hbuton:hover {
+    background: #008062;
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.2);
+    transform: translate3d(0, -1px, 0);
+}
+
+.hbuton:active {
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    transform: translate3d(0, 1px, 0);
+}
