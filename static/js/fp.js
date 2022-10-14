@@ -135,9 +135,7 @@ function func() {
     $.ajax({
         contentType: 'application/json',
         data: JSON.stringify(reqdata),
-        success: function(data) {
-            console.log(data);
-        },
+        success: function(data) {console.log(data);},
         error: function() {},
         processData: false,
         type: 'POST',

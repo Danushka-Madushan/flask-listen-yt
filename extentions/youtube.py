@@ -33,7 +33,6 @@ class YouTube:
                 JsonData = json.loads(JsonData.group(1))
 
         content = JsonData['contents']['twoColumnBrowseResultsRenderer']['tabs'][0]['tabRenderer']['content']['sectionListRenderer']['contents'][0]['itemSectionRenderer']['contents'][0]['playlistVideoListRenderer']['contents']
-        with open('index.json', 'w') as file:file.write(json.dumps(JsonData['header']['playlistHeaderRenderer'], indent=4))
         Info = {
         	"plname" : JsonData['header']['playlistHeaderRenderer']['title']['simpleText'],
         	'plowner': JsonData['header']['playlistHeaderRenderer']['ownerText']['runs'][0]['text'],

@@ -53,11 +53,11 @@ def playlist():
 	response.headers.add('Access-Control-Allow-Origin', '*')
 	return response, 200
 
-@app.route('/req/video', methods=['POST'])
+@app.route('/req', methods=['POST'])
 def video():
 	# American Pie, Hellraiser
 	res = request.json
-	respdata = Loader(res['url']).get()
+	respdata = Loader(res['baseurl']+res['id']).get()
 	response = jsonify(respdata)
 	response.headers.add('Access-Control-Allow-Origin', '*')
 	return response, respdata['status']

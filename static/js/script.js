@@ -4,6 +4,11 @@ function setdata(data) {
     MuBlob = $.parseJSON(data);
 }
 
+function pauseAudio() {
+    var audio = document.getElementById("audio1"); 
+    audio.pause();
+}
+
 jQuery(async function($) {
     'use strict'
     var supportsAudio = !!document.createElement('audio').canPlayType;
@@ -24,9 +29,8 @@ jQuery(async function($) {
         // initialize playlist and controls
         var index = 0,
             playing = false,
-            mediaPath = '',
-            extension = '',
-            buildPlaylist = $.each(MuBlob['data'], function(key, value) {
+            tracks = MuBlob['data'],
+            buildPlaylist = $.each(tracks, function(key, value) {
                 var trackNumber = value.index,
                     trackName = value.title,
                     trackDuration = value.duration.time;
@@ -48,16 +52,15 @@ jQuery(async function($) {
                 playing = true;
                 npAction.text('Now Playing...');
             }).on('pause', function() {
-                playing = false;
+                pauseAudio();
                 npAction.text('Paused...');
             }).on('ended', function() {
+                pauseAudio();
                 npAction.text('Paused...');
                 if ((index + 1) < trackCount) {
                     index++;
                     loadTrack(index);
-                    audio.play();
                 } else {
-                    audio.pause();
                     index = 0;
                     loadTrack(index);
                 }
@@ -70,7 +73,7 @@ jQuery(async function($) {
                         audio.play();
                     }
                 } else {
-                    audio.pause();
+                    pauseAudio();
                     index = 0;
                     loadTrack(index);
                 }
@@ -83,25 +86,38 @@ jQuery(async function($) {
                         audio.play();
                     }
                 } else {
-                    audio.pause();
+                    pauseAudio();
                     index = 0;
                     loadTrack(index);
                 }
             }),
             li = $('#plList li').on('click', function() {
+                pauseAudio();
                 var id = parseInt($(this).index());
                 if (id !== index) {
-                    console.log(id) // Create the list editing function here
                     playTrack(id);
                 }
             }),
             loadTrack = function(id) {
                 $('.plSel').removeClass('plSel');
                 $('#plList li:eq(' + id + ')').addClass('plSel');
-                npTitle.text(MuBlob['data'][id].title);
+                npTitle.text(tracks[id].title);
                 index = id;
-                audio.src = mediaPath + tracks[id].file + extension;
-                updateDownload(id, audio.src);
+                $.ajax({
+                    contentType: 'application/json',
+                    data: JSON.stringify({ baseurl: 'https://www.youtube.com/watch?v=', id: tracks[id].data }),
+                    success: function(data) {
+                        audio.src = data['data'].link;
+                        updateDownload(id, audio.src);
+                        if (playing){
+                            audio.play().then(() => {}).catch(error => {});
+                        }
+                    },
+                    error: function() {},
+                    processData: false,
+                    type: 'POST',
+                    url: '/req'
+                });
             },
             updateDownload = function(id, source) {
                 player.on('loadedmetadata', function() {
