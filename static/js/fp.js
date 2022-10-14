@@ -1,7 +1,7 @@
 document.querySelector("body").onselectstart = function() { return false; };
 
-var JsonData = [];
-var dbnfo = [];
+var JsonData;
+var dbnfo;
 genuser();
 
 function dbid() {
