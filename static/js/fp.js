@@ -45,7 +45,7 @@ function history(data) {
 
 function redirect(path) {
     if (path) {
-        //
+        // redirect page to listner
     } else {
         console.log(`http://127.0.0.1:5000/listen/${dbnfo[0]['dbid']}`)
     }
