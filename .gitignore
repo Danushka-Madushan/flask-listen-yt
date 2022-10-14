@@ -1,5 +1,11 @@
+# Directories
+
 venv/
 __pycache__/
+
+# Workspace Files
+
 *.bat
 *.sublime-workspace
-.gitignore
+*.pyc
+*.gitignore

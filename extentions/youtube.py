@@ -22,7 +22,6 @@ class YouTube:
 	                        'clientVersion': self.clientVersion}}, 'continuation': token}
 
 	    	response = requests.post(self.api+browseApi, params=params, headers=self.headers, json=json_data).json()
-	    	with open('index.json', 'w') as file:file.write(json.dumps(response, indent=4))
     
     def extract(self, url):
         params = {'list': re.search(r'list=([A-z0-9-_]+)', requests.utils.unquote(url)).group(1)}
