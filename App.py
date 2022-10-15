@@ -49,13 +49,15 @@ def process():
 def playlist():
 	res = request.json
 	respdata = YouTube().extract(res['playlist'])
-	response = jsonify(respdata)
-	response.headers.add('Access-Control-Allow-Origin', '*')
-	return response, 200
+	if respdata:
+		response = jsonify(respdata)
+		response.headers.add('Access-Control-Allow-Origin', '*')
+		return response, 200
+	else:
+		return {'status':'fail', 'reason':'invalid-url'}, 400
 
 @app.route('/req', methods=['POST'])
 def video():
-	# American Pie, Hellraiser
 	res = request.json
 	respdata = Loader(res['baseurl']+res['id']).get()
 	response = jsonify(respdata)
@@ -66,6 +68,7 @@ def video():
 def page_not_found(e):
     return render_template('404.html'), 404
 
+''' # This two functions are for debugging peroposes
 @app.route("/exec")
 def exit_app():
     exiting = True
@@ -74,9 +77,7 @@ def exit_app():
 @app.teardown_request
 def teardown(exception):
     if exiting:os._exit(0)
-
+'''
 
 if __name__ == '__main__':
 	app.run(debug=True)
-
-#https://www.youtube.com/playlist?list=PLPob-mIsoOi04c8nEZyGJqVjWD9w2ABcJ

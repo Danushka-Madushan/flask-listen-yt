@@ -24,15 +24,21 @@ class YouTube:
 	    	response = requests.post(self.api+browseApi, params=params, headers=self.headers, json=json_data).json()
     
     def extract(self, url):
-        params = {'list': re.search(r'list=([A-z0-9-_]+)', requests.utils.unquote(url)).group(1)}
+        unqurl = re.search(r'list=([A-z0-9-_]+)', requests.utils.unquote(url))
+        if unqurl:
+            params = {'list': unqurl.group(1)}
+        else:
+            return False
 
         response = requests.get(self.api+'/playlist', params=params, headers=self.headers)
         if response.status_code == 200:
             JsonData = re.search(r'var.ytInitialData[^{]+(.+);</script>', response.text)
             if JsonData:
                 JsonData = json.loads(JsonData.group(1))
-
-        content = JsonData['contents']['twoColumnBrowseResultsRenderer']['tabs'][0]['tabRenderer']['content']['sectionListRenderer']['contents'][0]['itemSectionRenderer']['contents'][0]['playlistVideoListRenderer']['contents']
+        try:
+            content = JsonData['contents']['twoColumnBrowseResultsRenderer']['tabs'][0]['tabRenderer']['content']['sectionListRenderer']['contents'][0]['itemSectionRenderer']['contents'][0]['playlistVideoListRenderer']['contents']
+        except KeyError:
+            return False
         Info = {
         	"plname" : JsonData['header']['playlistHeaderRenderer']['title']['simpleText'],
         	'plowner': JsonData['header']['playlistHeaderRenderer']['ownerText']['runs'][0]['text'],

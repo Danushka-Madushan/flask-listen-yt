@@ -1,5 +1,6 @@
 document.querySelector("body").onselectstart = function() { return false; };
 
+var notyf = new Notyf({duration:1000});
 var JsonData = [];
 var dbnfo = [];
 genuser();
@@ -22,9 +23,9 @@ function genuser() {
         const uid = uuid.match('^uuid=(.{36}$)');
         $.ajax({
             contentType: 'application/json',
-            data: JSON.stringify({uuid:uid[1]}),
-            success: function(data) {history(data)},
-            error: function(){},
+            data: JSON.stringify({ uuid: uid[1] }),
+            success: function(data) { history(data) },
+            error: function() {},
             processData: false,
             type: 'POST',
             url: '/validate'
@@ -39,16 +40,12 @@ function history(data) {
     if (data['available'] == true) {
         dbnfo.push(data);
         $('.history').append(`<input type="submit" id="histor" class="hbuton" value="History">
-      <script>document.querySelector("#histor").onclick = function (){redirect(false)};</script>`);
+      <script>document.querySelector("#histor").onclick = function (){redirect(dbnfo[0]['dbid'])};</script>`);
     };
 };
 
 function redirect(path) {
-    if (path) {
-        // redirect page to listner
-    } else {
-        console.log(`http://127.0.0.1:5000/listen/${dbnfo[0]['dbid']}`)
-    }
+    window.location.href = `/listen/${path}`
 };
 
 $(".item").on("click", "i.fa-headphones", (e) => {
@@ -84,6 +81,7 @@ submit.onclick = async function() {
         contentType: 'application/json',
         data: JSON.stringify({ playlist: encodeURIComponent(playlist) }),
         success: function(a) {
+            notyf.success('Success')
             pstbtn();
             $(".item").empty();
             JsonData = [];
@@ -99,7 +97,7 @@ submit.onclick = async function() {
                 JsonData.push(a.contents[i]);
             };
         },
-        error: function() {},
+        error: function() {notyf.error('Operation Fail')},
         processData: false,
         type: 'POST',
         url: '/get'
@@ -135,10 +133,11 @@ function func() {
     $.ajax({
         contentType: 'application/json',
         data: JSON.stringify(reqdata),
-        success: function(data) {console.log(data);},
+        success: function(data) { notyf.success('Playlist Saved');redirect(data.dbid) },
         error: function() {},
         processData: false,
         type: 'POST',
         url: '/process'
     });
+
 };
