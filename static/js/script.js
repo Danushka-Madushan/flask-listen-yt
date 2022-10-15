@@ -95,7 +95,6 @@ jQuery(async function($) {
                 }
             }),
             li = $('#plList li').on('click', function() {
-                pauseAudio();
                 var id = parseInt($(this).index());
                 if (id !== index) {
                     playTrack(id);
