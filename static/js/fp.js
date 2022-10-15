@@ -1,9 +1,13 @@
 document.querySelector("body").onselectstart = function() { return false; };
+document.querySelector("body").onload = function(){genuser();}
 
 var notyf = new Notyf({duration:1000});
 var JsonData = [];
 var dbnfo = [];
-genuser();
+
+function checkArr (array){
+    return array.join("").length === 0;
+}
 
 function dbid() {
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
@@ -129,15 +133,19 @@ function pstbtn() {
 };
 
 function func() {
-    var reqdata = { userdata: JsonData, uuid: document.cookie }
-    $.ajax({
-        contentType: 'application/json',
-        data: JSON.stringify(reqdata),
-        success: function(data) { notyf.success('Playlist Saved');redirect(data.dbid) },
-        error: function() {},
-        processData: false,
-        type: 'POST',
-        url: '/process'
-    });
-
+    if (!checkArr(JsonData)) {
+        var reqdata = { userdata: JsonData, uuid: document.cookie }
+        $.ajax({
+            contentType: 'application/json',
+            data: JSON.stringify(reqdata),
+            success: function(data) { notyf.success('Playlist Saved');
+                redirect(data.dbid) },
+            error: function() {},
+            processData: false,
+            type: 'POST',
+            url: '/process'
+        });
+    } else {
+      notyf.error('Playlist is Empty!')
+    };
 };
