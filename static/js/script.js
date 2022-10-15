@@ -1,3 +1,6 @@
+document.querySelector("body").onselectstart = function (){return false;};
+document.querySelector("#home").onclick = function(){window.location.href = '..'}
+
 var MuBlob = null;
 
 function setdata(data) {
@@ -10,7 +13,7 @@ function pauseAudio() {
 }
 
 jQuery(async function($) {
-    'use strict'
+    'use strict';
     var supportsAudio = !!document.createElement('audio').canPlayType;
     if (supportsAudio) {
         // initialize plyr

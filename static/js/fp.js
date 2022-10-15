@@ -39,7 +39,7 @@ function genuser() {
 function history(data) {
     if (data['available'] == true) {
         dbnfo.push(data);
-        $('.history').append(`<input type="submit" id="histor" class="hbuton" value="History">
+        $('.history').append(`<button type="submit" id="histor" class="hbuton">History&nbsp;<i class="fa-solid fa-clock-rotate-left"></i></button>
       <script>document.querySelector("#histor").onclick = function (){redirect(dbnfo[0]['dbid'])};</script>`);
     };
 };

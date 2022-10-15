@@ -248,3 +248,37 @@ a.plyr__controls__item.plyr__control:hover,
         width: 100%;
     }
 }
+
+.hbuton {
+    margin-left: 2vh;
+    letter-spacing: 1px;
+    text-align: center;
+    display: inline-block;
+    padding: 8px 12px;
+    vertical-align: middle;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 22px;
+    text-transform: uppercase;
+    border: transparent solid 1px;
+    border-radius: 3px;
+    color: #fff;
+    background-repeat: repeat-x;
+    background-color: #009b77;
+}
+
+.hbuton {
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    will-change: transform;
+}
+
+.hbuton:hover {
+    background: #008062;
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.2);
+    transform: translate3d(0, -1px, 0);
+}
+
+.hbuton:active {
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    transform: translate3d(0, 1px, 0);
+}

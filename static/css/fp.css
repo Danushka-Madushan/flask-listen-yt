@@ -36,29 +36,6 @@ p[class="tname"] {
     border-radius: 9px;
 }
 
-#title {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-#titleInput {
-    font-family: "Open Sans", sans-serif;
-    font-size: 24px;
-    font-weight: 800;
-    border: 1px solid transparent;
-    border-radius: 9px;
-    color: #fff;
-    padding: 9px 18px;
-}
-
-#titleInput::placeholder {
-    color: rgba(63, 69, 95, .3);
-    text-align: center;
-    justify-content: center;
-}
-
-
 .fa-pencil-alt {
     font-size: 18px;
     border-radius: 50%;

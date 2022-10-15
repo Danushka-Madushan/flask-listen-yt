@@ -188,3 +188,8 @@ input[type="submit"] {
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
     transform: translate3d(0, 1px, 0);
 }
+
+.hbuton:focus {
+    border: none;
+    outline: none;
+}

@@ -13,13 +13,13 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/plyr/3.6.8/plyr.min.js'></script>
     <link rel='stylesheet' href='https://cdn.plyr.io/3.6.2/plyr.css'>
     <link rel="stylesheet" href="/static/css/styles.css">
-    <script type="text/javascript" src="/static/js/script.js"></script>
     <script type="text/javascript" src="/static/js/prefixfree.min.js"></script>
 </head>
 
 <body>
     <!-- partial:index.partial.html -->
     <div class="container">
+        <button type="submit" id="home" class="hbuton"><i class="fa-solid fa-house"></i></button>
         <div class="column add-bottom">
             <div id="mainwrap">
                 <div id="nowPlay">
@@ -39,8 +39,8 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="/static/js/script.js"></script>
     <script type="text/javascript">
-    document.querySelector("body").onselectstart = function (){return false;};
     var doc = new DOMParser().parseFromString('{{_userdata}}', "text/html");
     setdata(doc.documentElement.textContent);
     </script>
