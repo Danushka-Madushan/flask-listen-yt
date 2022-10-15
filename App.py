@@ -6,8 +6,6 @@ import re
 import os
 
 app = Flask(__name__)
-global exiting
-exiting = False
 userData = {}
 db = Mongodb('env0ytuserdata')
 
@@ -69,6 +67,8 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 ''' # This two functions are for debugging peroposes
+global exiting
+exiting = False
 @app.route("/exec")
 def exit_app():
     exiting = True
