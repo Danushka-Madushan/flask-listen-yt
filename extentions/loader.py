@@ -27,8 +27,11 @@ class Loader():
 		if response.status_code == 200:
 			response = response.json()
 			data = [x for x in response['format'] if x['ext'] == 'm4a']
-			m4a = [x['url'] for x in data if x['size'] == min([x['size'] for x in data])][0]
-			if requests.head(m4a, allow_redirects=True).status_code == 200:
-				return {'status':200, 'service':'ytmd', 'data':{'type':'m4a', 'link':m4a}}
+			if len(data) != 0:
+				m4a = [x['url'] for x in data if x['size'] == min([x['size'] for x in data])][0]
+				if requests.head(m4a, allow_redirects=True).status_code == 200:
+					return {'status':200, 'service':'ytmd', 'data':{'type':'m4a', 'link':m4a}}
+				else:
+					return self.ytpp()
 			else:
 				return self.ytpp()

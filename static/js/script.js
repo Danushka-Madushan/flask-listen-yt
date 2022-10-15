@@ -1,4 +1,4 @@
-var MuBlob;
+var MuBlob = null;
 
 function setdata(data) {
     MuBlob = $.parseJSON(data);
