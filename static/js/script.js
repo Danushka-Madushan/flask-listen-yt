@@ -66,7 +66,7 @@ jQuery(async function($) {
                 } else {
                     index = 0;
                     loadTrack(index);
-                }
+                };
             }).get(0),
             btnPrev = $('#btnPrev').on('click', function() {
                 if ((index - 1) > -1) {
@@ -105,8 +105,8 @@ jQuery(async function($) {
                 $('#plList li:eq(' + id + ')').addClass('plSel');
                 npTitle.text(tracks[id].title);
                 index = id;
-                if (id in Mudata) {
-                    audio.src = Mudata[id];
+                if (id in Mudata && Mudata[id].exp > parseInt(Date.now().toString().slice(0, -3))) {
+                    audio.src = Mudata[id].src;
                     updateDownload(id, audio.src);
                 } else {
                     $.ajax({
@@ -114,11 +114,8 @@ jQuery(async function($) {
                         data: JSON.stringify({ baseurl: 'https://www.youtube.com/watch?v=', id: tracks[id].data }),
                         success: function(data) {
                             audio.src = data['data'].link;
-                            Mudata[index] = audio.src;
+                            Mudata[index] = { id: index, exp: parseInt(data['expire']), src: audio.src };
                             updateDownload(id, audio.src);
-                            if (playing) {
-                                audio.play().then(() => {}).catch(error => {});
-                            }
                         },
                         error: function() {},
                         processData: false,
@@ -130,6 +127,9 @@ jQuery(async function($) {
             updateDownload = function(id, source) {
                 player.on('loadedmetadata', function() {
                     $('a[data-plyr="download"]').attr('href', source);
+                    if (playing) {
+                        audio.play().then(() => {}).catch(error => {});
+                    }
                 });
             },
             playTrack = function(id) {
