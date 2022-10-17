@@ -1,19 +1,19 @@
-document.querySelector("body").onselectstart = function (){return false;};
-document.querySelector("#home").onclick = function(){window.location.href = '..'}
+document.querySelector("body").onselectstart = function() { return false; };
+document.querySelector("#home").onclick = function() { window.location.href = '..' }
 
 var MuBlob = null;
+var Mudata = {};
 
 function setdata(data) {
     MuBlob = $.parseJSON(data);
 }
 
 function pauseAudio() {
-    var audio = document.getElementById("audio1"); 
+    var audio = document.getElementById("audio1");
     audio.pause();
 }
 
 jQuery(async function($) {
-    'use strict';
     var supportsAudio = !!document.createElement('audio').canPlayType;
     if (supportsAudio) {
         // initialize plyr
@@ -105,21 +105,27 @@ jQuery(async function($) {
                 $('#plList li:eq(' + id + ')').addClass('plSel');
                 npTitle.text(tracks[id].title);
                 index = id;
-                $.ajax({
-                    contentType: 'application/json',
-                    data: JSON.stringify({ baseurl: 'https://www.youtube.com/watch?v=', id: tracks[id].data }),
-                    success: function(data) {
-                        audio.src = data['data'].link;
-                        updateDownload(id, audio.src);
-                        if (playing){
-                            audio.play().then(() => {}).catch(error => {});
-                        }
-                    },
-                    error: function() {},
-                    processData: false,
-                    type: 'POST',
-                    url: '/req'
-                });
+                if (id in Mudata) {
+                    audio.src = Mudata[id];
+                    updateDownload(id, audio.src);
+                } else {
+                    $.ajax({
+                        contentType: 'application/json',
+                        data: JSON.stringify({ baseurl: 'https://www.youtube.com/watch?v=', id: tracks[id].data }),
+                        success: function(data) {
+                            audio.src = data['data'].link;
+                            Mudata[index] = audio.src;
+                            updateDownload(id, audio.src);
+                            if (playing) {
+                                audio.play().then(() => {}).catch(error => {});
+                            }
+                        },
+                        error: function() {},
+                        processData: false,
+                        type: 'POST',
+                        url: '/req'
+                    });
+                };
             },
             updateDownload = function(id, source) {
                 player.on('loadedmetadata', function() {

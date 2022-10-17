@@ -3,7 +3,6 @@ from extentions import YouTube, Mongodb, Loader
 import datetime
 import json
 import re
-import os
 
 app = Flask(__name__)
 userData = {}
@@ -67,6 +66,7 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 ''' # This two functions are for debugging peroposes
+import os
 global exiting
 exiting = False
 @app.route("/exec")
