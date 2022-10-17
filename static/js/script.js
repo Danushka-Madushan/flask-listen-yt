@@ -105,7 +105,7 @@ jQuery(async function($) {
                 $('#plList li:eq(' + id + ')').addClass('plSel');
                 npTitle.text(tracks[id].title);
                 index = id;
-                if (id in Mudata && Mudata[id].exp > parseInt(Date.now().toString().slice(0, -3))) {
+                if (id in Mudata && Mudata[id].exp > parseInt(Date.now().toString().slice(0, -3)) + parseInt(tracks[id].duration['inseconds'])) {
                     audio.src = Mudata[id].src;
                     updateDownload(id, audio.src);
                 } else {
