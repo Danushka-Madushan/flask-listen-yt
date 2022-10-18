@@ -72,9 +72,6 @@ jQuery(async function($) {
                 if ((index - 1) > -1) {
                     index--;
                     loadTrack(index);
-                    if (playing) {
-                        audio.play();
-                    }
                 } else {
                     pauseAudio();
                     index = 0;
@@ -85,9 +82,6 @@ jQuery(async function($) {
                 if ((index + 1) < trackCount) {
                     index++;
                     loadTrack(index);
-                    if (playing) {
-                        audio.play();
-                    }
                 } else {
                     pauseAudio();
                     index = 0;
