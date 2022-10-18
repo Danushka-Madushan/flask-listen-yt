@@ -3,7 +3,6 @@
 html,
 body {
     -webkit-font-smoothing: antialiased;
-    -webkit-text-size-adjust: 100%;
     background: #000 url('./moulin.png') repeat 0 0;
     color: #fff;
     font-size: 1rem;
@@ -18,11 +17,6 @@ body {
 ::before,
 ::after {
     box-sizing: border-box;
-}
-
-* {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-tap-highlight-color: transparent;
 }
 
 .container {
@@ -144,6 +138,10 @@ audio {
     background-color: rgba(0, 0, 0, .3);
 }
 
+#btnPrev {
+
+}
+
 .plItem {
     position: relative;
 }
@@ -250,6 +248,7 @@ a.plyr__controls__item.plyr__control:hover,
 }
 
 .hbuton {
+    cursor: pointer;
     margin-left: 2vh;
     letter-spacing: 1px;
     text-align: center;
@@ -281,4 +280,30 @@ a.plyr__controls__item.plyr__control:hover,
 .hbuton:active {
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
     transform: translate3d(0, 1px, 0);
+}
+
+.fa-backward {
+    transition: background 0.3s, transform 0.3s;
+    will-change: transform;
+}
+
+.fa-backward:hover {
+    transform: translate3d(0, -2px, 0);
+}
+
+.fa-backward:active {
+    transform: translate3d(0, 2px, 0);
+}
+
+.fa-forward {
+    transition: background 0.3s, transform 0.3s;
+    will-change: transform;
+}
+
+.fa-forward:hover {
+    transform: translate3d(0, -2px, 0);
+}
+
+.fa-forward:active {
+    transform: translate3d(0, 2px, 0);
 }
