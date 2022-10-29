@@ -19,7 +19,7 @@ class Loader():
 				respdata['data']['mp3'] = 'https://ytpp3.com'+respdata['data']['mp3'][-1]['mp3_url']
 				return {**resp(respdata['data']['mp3']), **self.expire(1800)}
 			else:
-				return {**resp(respdata['data']['mp3_cdn']), **self.expire(3600)}
+				return {**resp(respdata['data']['mp3_cdn'][-1]['mp3_url']), **self.expire(3600)}
 		else:
 			return {'status':403, 'service':'ytpp'}
 
