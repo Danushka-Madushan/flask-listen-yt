@@ -16,7 +16,7 @@ class Loader():
 		if response.status_code == 200:
 			respdata = response.json()
 			if respdata['data']['mp3'] and respdata['data']['mp4'] != '':
-				respdata['data']['mp3'] = 'https://ytpp3.com'+respdata['data']['mp3']
+				respdata['data']['mp3'] = 'https://ytpp3.com'+respdata['data']['mp3'][-1]['mp3_url']
 				return {**resp(respdata['data']['mp3']), **self.expire(1800)}
 			else:
 				return {**resp(respdata['data']['mp3_cdn']), **self.expire(3600)}
