@@ -1,7 +1,6 @@
 import requests
 from time import time
 from requests.utils import unquote
-import json
 
 class Loader():
 	def __init__(self, link):
