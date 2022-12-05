@@ -24,7 +24,7 @@ class Loader():
 			else:
 				return {'status':403, 'service':'ytpp'}
 		else:
-			return {'status':403, 'service':'ytpp'}
+			return {'status':500, 'service':'ytpp'}
 
 	def get(self):
 		params = {'url': self.url}
@@ -32,7 +32,10 @@ class Loader():
 		if response.status_code == 200:
 			response = response.json()
 			if response['status']:
-				data = [x for x in response['format'] if x['ext'] == 'm4a']
+				try:
+					data = [x for x in response['format'] if x['ext'] == 'm4a']
+				except Exception:
+					return self.ytpp()
 				if len(data) != 0:
 					m4a = [x['url'] for x in data if x['size'] == min([x['size'] for x in data])][0]
 					res = requests.head(m4a, allow_redirects=True)
